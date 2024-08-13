@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skin Disease System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <style>
+    .content {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .bg-img {
+      width: 100%;
+      height: 100vh;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.71), rgba(0, 0, 0, 0.7)), url('static/images/result.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{url_for('login')}}">Skin Disease System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        </ul>
+
+        <form class="d-flex" role="search">
+          <p>Logged in : <strong>{{session.name}}</p>
+
+          <button class="btn btn-outline-success" type="submit"><a class="bottom"
+              href="{{url_for('login')}}">Logout</a></button>
+
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="bg-img">
+    <div class="content"><br>
+
+      <center>
+
+        <div class="header">
+          <row style="width: 100% ; display: flex; justify-content: center;">
+            <h3 class="header-text" style= "color: white">Uploaded Image</h3>
+          </row>
+          <row style="width: 100% ; display: flex; justify-content: center;">
+            <img class="result-img" src={{url_for('static', filename='images/' + img)}}>
+          </row>
+        </div>
+
+        <div class="info">
+
+          <row style="width: 100% ; display: flex; justify-content: center;">
+            <h3 class="header-text" style= "color: white">Model Prediction</h3>
+          </row>
+
+          <center>
+            <h2 style= "color: black">You have: <span>{{ predictions.class1 }}</b> Disease</h2>
+            <h2 style= "color: black">This Disease Probablity is: <span>{{ predictions.prob1 }}</b> Disease</h2>
+
+          </center>
+        </div>
+      </center>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <div class="container">
+
+      <div class="results">
+        {% if predictions.class1 == 'Basal Cell Carcinoma' %}
+        
+        <center><h2 style="color: green"> Basal Cell Carcinoma </h2></center>
+        <strong>Cause Organ :</strong>  
+        <p>Metastatic BCC most often manifests as dissemination to the regional lymph nodes (60%), lungs (42%), bones (20%), skin (10%), or to other organs in 2% cases via hematogenous spread or direct extension. Untreated BCCs can become locally invasive, grow wide and deep into the skin and destroy skin, tissue and bone.</p>
+        <p>Untreated BCCs can become locally invasive, grow wide and deep into the skin and destroy skin, tissue and bone.</p>
+
+        <br>
+        <strong>Prevention :</strong>
+        <p>You should quit, smoking is by far the leading risk factor for lung cancer, and it contributes to other cancers such as mouth, throat, cervical and bladder cancer.</p>
+        <p>The sun, sunlamps and tanning beds all give off ultraviolet rays that cause skin damage and can lead to skin cancer. When you’re in the sun, always apply sunscreen to your skin that has at least a sun protection factor SPF 30.</p>
+        <p>Improving your diet is one of the most important things you can do to stay healthy, and certain foods can impact your cancer risk. 
+        Drinking alcohol raises your risk for breast, throat, liver, colorectal and other cancers.</p>
+      
+        <strong>Solution Recommendation:</strong>
+        <li>Efudex Fluorouracil</li>
+        <li>Imiquimod</li>
+        <li>Erivedge Capsule</li>
+        <li>Lmiquimod (Zyclara) cream</li>
+
+
+        {% elif predictions.class1 == 'Actinic Keratoses' %}
+        </center><h2 style="color: green"> Actinic Keratoses </h2></center>
+        <strong>Cause Organ :</strong>
+        <p>Actinic keratosis (AK) is a skin disorder that causes rough, scaly patches of skin. Another name for AK is solar keratosis. AK is a type of precancer, which means that if you don’t treat the condition, it could turn into cancer. Without treatment, AK can lead to a type of skin cancer called squamous cell carcinoma.</p>
+        <p>The first signs of actinic keratosis are rough, raised bumps on your skin. They can vary in color but often have a yellow or brown crust on top.</p>
+        
+        <strong>Prevention :</strong>
+        <li>Applying sunscreen every day, even in cloudy weather or during winter, and re-applying often — at least every two hours. Use a broad-spectrum sunscreen with at least 30 sun protection factor (SPF) that blocks both UVA and UVB light.</li>
+        <li>Avoiding sun exposure when UV light is most intense, between 10 a.m. and 2 p.m.</li>
+        <li>Avoiding tanning salons, sun lamps and tanning beds.</li>
+        <li>Wearing sun-safe clothing, such as long-sleeved shirts, long pants and hats.</li>
+
+        <strong>Solution Recommendation :</strong>
+        <li>Diclofenac skin gel (Voltaren® gel).</li>
+        <li>Fluorouracil, or 5-FU skin cream (Fluorac®).</li>
+        <li>Imiquimod skin cream (Aldara or Zyclara®).</li>
+        <li>Ingenol mebutate topical gel (Picato®).</li>
+        
+        
+        {% elif predictions.class1 == 'Benign Keratosis' %}
+        <center><h2 style="color: green"> Benign Keratosis </h2></center>
+        <strong>Cause Organ :</strong>
+        <p>A seborrheic keratosis is a common benign skin growth, similar to a mole. Most people will have at least one in their lifetime. They tend to appear in mid-adulthood and their frequency increases with age.</p>
+        <p>Skin growths like seborrheic keratoses are sometimes also called epidermal tumors. That doesn’t mean they’re cancer, though. Technically, moles and warts are also epidermal tumors. That just means they are clusters of extra cells on the epiderma, the outer layer of the skin. They aren’t considered a risk factor for skin cancer.</p>
+        
+        <strong>Prevention :</strong>
+        <p>There is no way to completely prevent the development of seborrheic keratoses.</p>
+        <p>However, if you know you're at risk or you frequently develop these growths, working with a dermatologist means you can limit the impact this skin condition has on your life.</p>
+
+        <strong>Solution Recommendation :</strong>
+        <li>Tazarotene cream 0.1%.</li>
+        <li>Alpha Hydroxy Acid (AHA) products, including glycolic acid and salicylic acid peels.</li>
+        <li>Vitamin D3 cream.</li>
+        
+        
+        {% elif predictions.class1 == 'Dermatofibroma' %}
+        <center><h2 style="color: green"> Dermatofibroma </h2></center>
+        <strong>Cause Organ :</strong>
+        <p>Dermatofibromas are caused by an overgrowth of a mixture of different cell types in the dermis layer of the skin. The reasons why this overgrowth occurs aren't known. The growths often develop after some type of small trauma to the skin, including a puncture from a splinter or bug bite.</p>
+        <p>Dermatofibromas are most common on the legs, but they sometimes appear on the arms, trunk, and, less commonly, elsewhere on the body.</p>
+        
+        <strong>Prevention :</strong>
+        <li>freezing (with liquid nitrogen)</li>
+        <li>localized corticosteroid injection.</li>
+        <li>laser therapy.</li>
+        <li>shaving the top to flatten the growth.</li>
+
+        <strong>Solution Recommendation :</strong>
+        <li>BELLADONNA 30</li>
+        <li>Candid Cream</li>
+        <li>Efaderm cream</li>
+        
+        
+        {% elif predictions.class1 == 'Melanoma' %}
+        <center><h2 style="color: green"> Melanoma </h2></center>
+        <strong>Cause Organ :</strong>
+        <p>Melanoma, which means "black tumor," is the most dangerous type of skin cancer. It grows quickly and has the ability to spread to any organ.</p>
+        <p>Melanoma comes from skin cells called melanocytes. These cells produce melanin, the dark pigment that gives skin its color. Most melanomas are black or brown in color, but some are pink, red, purple or skin-colored.</p>
+        
+        <strong>Prevention :</strong>
+        <p>You may reduce your risk of melanoma by protecting yourself from excess sun and sunburns.</p>
+        <p>Avoid sun and seek shade, especially between 10 a.m. and 4 p.m.</p>
+        <p>Don’t use tanning beds. Use a spray tan (cosmetic) instead.</p>
+        <p>Whenever possible, wear hats with brims, sunglasses, long-sleeved shirts and pants.</p>
+        <p>Use a broad-spectrum sunscreen with a skin protection factor (SPF) of 30 or higher and reapply often, usually every 1.5 hours or more often if you’re swimming or sweating.</p>
+        
+        <strong>Solution Recommendation :</strong>
+        <li>Radiation Therapy</li>
+        <li>Immunotherapy</li>
+        <li>Metastasectomy</li>
+        
+        
+        {% elif predictions.class1 == 'Melanocytic Nevi' %}
+        <center><h2 style="color: green"> Melanocytic Nevi </h2></center>
+        <strong>Cause Organ :</strong>
+        <p>Melanocytic nevus is a skin condition characterized by an abnormally dark, noncancerous skin patch (nevus) that is composed of pigment-producing cells called melanocytes. It is present from birth (congenital) or is noticeable soon after birth.</p>
+        
+        
+        <strong>Prevention :</strong>
+        <p>There is no way to prevent your child from being born with moles.</p>
+        
+        <strong>Solution Recommendation :</strong>
+        <li>Plastic Surgery</li>
+        <li>Leaser Treatment</li>
+        
+        
+        {% elif predictions.class1 == 'Vascular naevus' %}
+        <center><h2 style="color: green"> Vascular naevus </h2></center>
+        <strong>Cause Organ :</strong>
+        <p>Vascular malformations (telangiectatic naevi or nevi) are sometimes incorrectly referred to as flat haemangiomas. These are not haemangiomas but are malformed dilated blood vessels in the skin. Lesions are non-cancerous and appear as blotches of red or purple skin discolouration on any part of the body.</p>
+        
+        <strong>Prevention :</strong>
+        <p>Wash scrapes, cuts, wounds, or insect bites right away.</p>
+        <p>Do not share items, such as towels, razors, bar soap, clothes, or toys.</p>
+        <p>Avoid skin-to-skin contact with anyone who has a skin infection.</p>
+
+        <strong>Solution Recommendation :</strong>
+        <li>lasers</li>
+        <li>Corticosteroids </li>
+        <li>Interferons</li>
+        <li>Surgery</li>
+        
+  
+              
+  
+        
+        
+        {% endif %}
+        
+      </div>
+  
+    </div>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
